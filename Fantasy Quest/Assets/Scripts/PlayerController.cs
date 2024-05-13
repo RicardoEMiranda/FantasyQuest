@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour {
 
     private NavMeshAgent navMeshAgent;
 
+    Ray ray;
+
     // Start is called before the first frame update
     void Start() {
         
@@ -20,7 +22,12 @@ public class PlayerController : MonoBehaviour {
     // Update is called once per frame
     void Update()  {
         
-    navMeshAgent.destination = targetPosition.position;
+        if(Input.GetMouseButtonDown(0)) {
+            ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        }
+
+        Debug.DrawRay(ray.origin, ray.direction*100);
+        navMeshAgent.destination = targetPosition.position;
 
     }
 }
